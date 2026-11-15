@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Islamic Lessons</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#0b6b3a" />
+</head>
+<body>
+  <header>
+    <h1>☪️ My Islamic Lessons</h1>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Welcome, Student</h2>
+      <p>Please sign in to access your lessons.</p>
+      <button id="signInBtn">Sign In</button>
+      <p id="message"></p>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('signInBtn').addEventListener('click', () => {
+      document.getElementById('message').textContent =
+        'Login coming in the next step!';
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
