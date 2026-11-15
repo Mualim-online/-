@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Islamic Lessons</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="theme-color" content="#0b6b3a" />
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <span class="crescent">☪</span>
-      <h1>My Islamic Lessons</h1>
-    </div>
-    <p class="tagline">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-  </header>
-
-  <main>
-    <div class="card">
-      <h2>Welcome, Student</h2>
-      <p>Please sign in to access your lessons.</p>
-      <button id="signInBtn">Sign In</button>
-      <p id="message"></p>
-    </div>
-  </main>
-
-  <script>
-    document.getElementById('signInBtn').addEventListener('click', () => {
-      document.getElementById('message').textContent =
-        'Login coming in the next step!';
-    });
-  </script>
-</body>
-</html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b3d3b">
+<title>Noor — Islamic Learning</title>
+<style>
+  :root{
+    --bg:#0b1f1e; --bg2:#0e2b29; --card:#123634; --card2:#17423f;
+    --line:#1f5350; --txt:#e8f6f3; --muted:#8fb8b2;
+    --accent:#2ee6a8; --accent2:#12b886; --warn:#ffb84d; --bad:#ff6b6b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;height:100%}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%,#14504b 0%,var(--bg) 55%);
+    color:var(--txt); min-height:100dvh;
+  }
+  #app{max-width:560px;margin:0 auto;padding:18px 16px 90px}
+  h1,h2,h3{margin:0 0 6px}
+  h1{font-size:26px}
+  h2{font-size:20px}
+  h3{font-size:16px}
+  p{margin:0 0 10px;line-height:1.5}
+  .muted{color:var(--muted);font-size:14px}
+  .small{font-size:12px}
+  .center{text-align:center}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+  .row{display:flex;align-items:center;gap:10px}
+  .between{justify-content:space-between}
+  .wrap{flex-wrap:wrap}
+  input,textarea,select{
+    width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);
+    background:var(--card2);color:var(--txt);font-size:15px;font-family:inherit;margin:6px 0 12px;
+  }
+  input[type=radio]{width:20px;height:20px;margin:0;accent-color:var(--accent);flex:0 0 auto}
+  input[type=file]{padding:8px;font-size:13px}
+  textarea{min-height:90px;resize:vertical}
+  label{font-size:13px;color:var(--muted);display:block}
+  button{
+    font-family:inherit;font-size:15px;font-weight:600;border:0;border-radius:14px;
+    padding:13px 18px;background:var(--accent);color:#052522;cursor:pointer;transition:.15s;
+  }
+  button:active{transform:scale(.97)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--line)}
+  button.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+  button.big{width:100%;padding:16px;font-size:17px;margin-top:6px}
+  button.danger{background:transparent;color:var(--bad);border:1.5px solid #4a2626}
+  .tabs{display:flex;gap:8px;background:var(--card2);padding:5px;border-radius:14px;margin-bottom:16px}
+  .tabs button{flex:1;background:transparent;color:var(--muted);padding:10px}
+  .tabs button.on{background:var(--accent);color:#052522}
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .topbar h2{margin:0;flex:1}
+  .level{
+    display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:14px;margin-bottom:12px;cursor:pointer;transition:.15s;
+  }
+  .level:active{transform:scale(.985)}
+  .level.locked{opacity:.5;cursor:not-allowed}
+  .lv-num{
+    width:48px;height:48px;flex:0 0 48px;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#052522;font-weight:800;font-size:18px;
+  }
+  .level.locked .lv-num{background:#2a4a48;color:var(--muted)}
+  .level .meta{flex:1;min-width:0}
+  .level .meta p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+  .badge{font-size:20px}
+  .media{margin:10px 0;border-radius:14px;overflow:hidden;background:#000}
+  .media iframe,.media video,.media img{width:100%;display:block;border:0}
+  .media iframe{aspect-ratio:16/9;height:auto}
+  .media video{max-height:60vh}
+  .media audio{width:100%;background:var(--card2)}
+  .lesson-text{background:var(--card2);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 12px 12px 0}
+  .opt{
+    display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card2);
